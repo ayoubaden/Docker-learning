@@ -1,0 +1,17 @@
+services:
+
+  web:
+    build: .
+    ports:
+      - "5006:5006"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis-data:
